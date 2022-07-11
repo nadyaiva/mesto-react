@@ -8,6 +8,7 @@ function UpdateAvatarPopup(props) {
     name="avatar"
     isOpen={props.isOpen}
     button="Сохранить"
+    onClose={props.onClose}
   >
     <label className="popup__label">
       <input

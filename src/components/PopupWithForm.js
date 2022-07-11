@@ -24,6 +24,7 @@ function PopupWithForm(props) {
         </fieldset>
         <button
           className="popup__close popup__close-button popup__close-button_place_edit-profile"
+          onClick={props.onClose}
           type="button"
         ></button>
       </form>

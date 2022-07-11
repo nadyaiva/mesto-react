@@ -8,6 +8,7 @@ function AddPostPopup(props) {
       name="add-photo"
       isOpen={props.isOpen}
       button="Создать"
+      onClose={props.onClose}
     >
       <label className="popup__label">
         <input
