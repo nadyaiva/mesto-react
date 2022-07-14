@@ -2,7 +2,7 @@ import React from "react";
 
 function Card({ card }) {
   return (
-    <li className="elements__element" key={card._id}>
+    <li className="elements__element">
     <button className="elements__button_trash" type="button"></button>
     <img
       className="elements__image"

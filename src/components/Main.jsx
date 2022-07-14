@@ -3,7 +3,7 @@ import api from "../utils/Api";
 import Card from "./Card";
 
 function Main(props) {
-  const [cards, setcards] = React.useState([""]);
+  const [cards, setcards] = React.useState([]);
 
   const [userName, setuserName] = React.useState("");
   const [userDescription, setuserDescription] = React.useState("");
@@ -51,13 +51,10 @@ function Main(props) {
         ></button>
       </section>
       <section className="container">
-        <ul className="elements"></ul>
-      </section>
-      <section className="container">
         <ul className="elements">
-          {cards.map((card) => (
-            <Card card={card}/>
-          ))}
+          {cards.map((card) => 
+            <Card card={card} key={card._id}/>
+          )}
         </ul>
       </section>
     </>
