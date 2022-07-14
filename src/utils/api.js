@@ -1,4 +1,4 @@
-class Api {
+class ApiClass {
   constructor(config) {
     this._authorization = config.authorization;
     this._cohort = config.cohort;
@@ -84,10 +84,10 @@ class Api {
   }
 }
 
-const api = new Api({
+const Api = new ApiClass({
   authorization: "d94e7cf1-3761-45b6-9798-0ad1da8f2858",
   cohort: "cohort-42",
   baseurl: "https://nomoreparties.co/v1/",
 });
 
-export default api;
+export default Api;

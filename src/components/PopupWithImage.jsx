@@ -1,6 +1,6 @@
 import React from "react";
 
-function PopupWithImage({ card, onClose }) {
+function ImagePopup({ card, onClose }) {
   const classNamePopupImage = `popup popup-fullscreen ${
     !!card ? "popup_opened" : ""
   }`;
@@ -27,4 +27,4 @@ function PopupWithImage({ card, onClose }) {
     </div>
   );
 }
-export default PopupWithImage;
+export default ImagePopup;

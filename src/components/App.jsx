@@ -6,8 +6,7 @@ import Main from "./Main";
 import EditProfilePopup from "./EditProfilePopup";
 import AddPostPopup from "./AddPostPopup";
 import UpdateAvatarPopup from "./UpdateAvatarPopup";
-import PopupWithImage from "./PopupWithImage";
-import api from "../utils/Api";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
@@ -57,7 +56,7 @@ function App() {
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
       />
-      <PopupWithImage card={selectedCard} onClose={closeAllPopups} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }
