@@ -1,4 +1,4 @@
-import PopupWithForm from "./PopupWithForm";
+import PopupWithForm from "./ImagePopup";
 import React from "react";
 
 function AddPostPopup(props) {

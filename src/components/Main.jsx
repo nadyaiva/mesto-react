@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../utils/Api";
+import Api from "../utils/Api";
 import Card from "./Card";
 
 function Main(props) {
@@ -10,7 +10,7 @@ function Main(props) {
   const [userAvatar, setuserAvatar] = React.useState("");
 
   React.useEffect(() => {
-    api.getUserInfoApi().then((data) => {
+    Api.getUserInfoApi().then((data) => {
       setuserName(data.name);
       setuserDescription(data.about);
       setuserAvatar(data.avatar);
@@ -18,7 +18,7 @@ function Main(props) {
   }, [userName, userDescription, userAvatar]);
 
   React.useEffect(() => {
-    api.getInitialCards().then((data) => {
+    Api.getInitialCards().then((data) => {
       setcards(data);
     });
   }, []);
