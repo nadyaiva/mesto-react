@@ -13,6 +13,11 @@ function App() {
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setselectedCard] = useState(null);
+
+  function handleCardClick(card) {
+    setselectedCard(card);
+  }
 
   function onEditProfile() {
     setisEditProfilePopupOpen(true);
@@ -27,9 +32,10 @@ function App() {
   }
 
   function closeAllPopups() {
-    setisEditProfilePopupOpen(false)
-    setisAddPlacePopupOpen(false)
-    setisEditAvatarPopupOpen(false)
+    setisEditProfilePopupOpen(false);
+    setisAddPlacePopupOpen(false);
+    setisEditAvatarPopupOpen(false);
+    setselectedCard(false);
   }
 
   return (
@@ -39,12 +45,19 @@ function App() {
         onEditProfileClick={onEditProfile}
         onAddPlaceClick={onAddPlace}
         onEditAvatarClick={onEditAvatar}
+        onCardClick={handleCardClick}
       />
       <Footer />
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
-      <AddPostPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
-      <UpdateAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}/>
-      <PopupWithImage />
+      <EditProfilePopup
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
+      />
+      <AddPostPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+      <UpdateAvatarPopup
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+      />
+      <PopupWithImage card={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }
