@@ -7,6 +7,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import AddPostPopup from "./AddPostPopup";
 import UpdateAvatarPopup from "./UpdateAvatarPopup";
 import PopupWithImage from "./PopupWithImage";
+import api from "../utils/Api";
 
 function App() {
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
