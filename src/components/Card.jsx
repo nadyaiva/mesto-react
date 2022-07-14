@@ -16,7 +16,7 @@ function Card({ card }) {
           className="elements__button_like"
           type="button"
         ></button>
-        <div className="elements__info_like-count">{card.likes}</div>
+        <div className="elements__info_like-count">{card.likes.length}</div>
       </div>
     </div>
   </li>
