@@ -13,7 +13,7 @@ function EditProfilePopup({ isOpen, onClose }) {
       <label className="popup__label">
         <input
           className="popup__input popup__input_type_name"
-          value="Жак-Ив Кусто"
+          defaultValue="Жак-Ив Кусто"
           placeholder="Имя"
           type="text"
           name="fullname"
@@ -28,7 +28,7 @@ function EditProfilePopup({ isOpen, onClose }) {
         <input
           className="popup__input popup__input_type_job"
           placeholder="Вид деятельности"
-          value="Исследователь океана"
+          defaultValue="Исследователь океана"
           type="text"
           name="jobtitle"
           id="job-input"

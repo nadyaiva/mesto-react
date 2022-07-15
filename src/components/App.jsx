@@ -9,32 +9,32 @@ import UpdateAvatarPopup from "./UpdateAvatarPopup";
 import ImagePopup from "./ImagePopup";
 
 function App() {
-  const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
-  const [selectedCard, setselectedCard] = useState(null);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   function handleCardClick(card) {
-    setselectedCard(card);
+    setSelectedCard(card);
   }
 
   function onEditProfile() {
-    setisEditProfilePopupOpen(true);
+    setIsEditProfilePopupOpen(true);
   }
 
   function onAddPlace() {
-    setisAddPlacePopupOpen(true);
+    setIsAddPlacePopupOpen(true);
   }
 
   function onEditAvatar() {
-    setisEditAvatarPopupOpen(true);
+    setIsEditAvatarPopupOpen(true);
   }
 
   function closeAllPopups() {
-    setisEditProfilePopupOpen(false);
-    setisAddPlacePopupOpen(false);
-    setisEditAvatarPopupOpen(false);
-    setselectedCard(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setSelectedCard(null);
   }
 
   return (

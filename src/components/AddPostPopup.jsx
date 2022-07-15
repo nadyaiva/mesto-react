@@ -13,7 +13,7 @@ function AddPostPopup(props) {
       <label className="popup__label">
         <input
           className="popup__input popup__input_type_title"
-          value=""
+          defaultValue=""
           placeholder="Название"
           type="text"
           name="cardname"
@@ -28,7 +28,7 @@ function AddPostPopup(props) {
         <input
           className="popup__input popup__input_type_pic-link"
           placeholder="Ссылка на картинку"
-          value=""
+          defaultValue=""
           type="url"
           name="link"
           id="link-input"

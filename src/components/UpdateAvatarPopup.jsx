@@ -14,7 +14,7 @@ function UpdateAvatarPopup(props) {
         <input
           className="popup__input popup__input_type_pic-link"
           placeholder="Ссылка на аватар"
-          value=""
+          defaultValue=""
           type="url"
           name="link"
           id="link-avatar"

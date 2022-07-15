@@ -7,7 +7,6 @@ function PopupWithForm(props) {
   return (
     <div className={className}>
       <form
-        noValidate
         className={`form form_${props.name}`}
         name={`${props.name}`}
       >
