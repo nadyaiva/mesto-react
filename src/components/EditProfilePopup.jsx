@@ -1,4 +1,4 @@
-import PopupWithForm from "./ImagePopup";
+import PopupWithForm from "./PopupWithForm";
 import React from "react";
 
 function EditProfilePopup({ isOpen, onClose }) {

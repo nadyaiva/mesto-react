@@ -1,35 +1,30 @@
 import React from "react";
 
-function PopupWithForm(props) {
-  const className = `popup popup_place_${props.name} ${
-    props.isOpen ? "popup_opened" : ""
+function ImagePopup({ card, onClose }) {
+  const classNamePopupImage = `popup popup-fullscreen ${
+    !!card ? "popup_opened" : ""
   }`;
-  return (
-    <div className={className}>
-      <form
-        noValidate
-        className={`form form_${props.name}`}
-        name={`${props.name}`}
-      >
-        <h2 className="popup__heading">{`${props.title}`}</h2>
+  const cardLink = !!card ? card.link : "";
+  const cardName = !!card ? card.name : "";
 
-        <fieldset className="popup__input-container">
-          {props.children}
-          <button
-            className="popup__save-button popup__save-button_place_edit-profile"
-            type="submit"
-          >
-            {props.button}
-          </button>
-        </fieldset>
+  return (
+    <div className={classNamePopupImage}>
+      <figure className="popup-fullscreen__figure">
+        <img
+          className="popup-fullscreen__image"
+          src={cardLink}
+          alt={cardName}
+        />
+        <figcaption className="popup-fullscreen__caption">
+          {cardName}
+        </figcaption>
         <button
-          className="popup__close popup__close-button popup__close-button_place_edit-profile"
-          onClick={props.onClose}
+          className="popup__close popup__close-button popup__close-button_place_fullscreen"
           type="button"
+          onClick={onClose}
         ></button>
-      </form>
+      </figure>
     </div>
   );
 }
-
-export default PopupWithForm;
+export default ImagePopup;

@@ -1,5 +1,5 @@
 import React from "react";
-import PopupWithForm from "./ImagePopup";
+import PopupWithForm from "./PopupWithForm";
 
 function UpdateAvatarPopup(props) {
   return (
