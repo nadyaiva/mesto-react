@@ -15,14 +15,18 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [currentUser, setCurrentUser] = useState({})
+  const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    Api.getUserInfoApi().then((data) => {
-      setCurrentUser(data)
-      console.log('effect call')
-    }).catch((err) => console.log(err))
-  }, [])
+    Promise.all([
+      Api.getUserInfoApi(),
+      Api.getInitialCards()
+    ]).then(([userInfo, cards]) => {
+      setCurrentUser(userInfo)
+      setCards(cards);
+    })
+  }, []);
 
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -47,6 +51,22 @@ function App() {
     setSelectedCard(null);
   }
 
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    Api.changeCardLikeStatus(card._id, !isLiked).then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    });
+}
+
+  function handleCardDelete(card) {
+    const isOwn = card.owner._id === currentUser._id;
+    Api.deletePost(card._id)
+    .then(setCards(state => state.filter(c => c._id !== card._id)))
+    .catch(err => console.log(err));
+  }
+
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -56,6 +76,9 @@ function App() {
         onAddPlaceClick={onAddPlace}
         onEditAvatarClick={onEditAvatar}
         onCardClick={handleCardClick}
+        onCardLike={handleCardLike}
+        onCardDelete={handleCardDelete}
+        cards={cards}
       />
       <Footer />
       <EditProfilePopup
