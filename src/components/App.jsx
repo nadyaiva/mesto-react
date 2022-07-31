@@ -19,13 +19,12 @@ function App() {
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    Promise.all([
-      Api.getUserInfoApi(),
-      Api.getInitialCards()
-    ]).then(([userInfo, cards]) => {
-      setCurrentUser(userInfo)
-      setCards(cards);
-    })
+    Promise.all([Api.getUserInfoApi(), Api.getInitialCards()]).then(
+      ([userInfo, cards]) => {
+        setCurrentUser(userInfo);
+        setCards(cards);
+      }
+    );
   }, []);
 
   function handleCardClick(card) {
@@ -53,44 +52,54 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     Api.changeCardLikeStatus(card._id, !isLiked).then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
     });
-}
+  }
 
   function handleCardDelete(card) {
     const isOwn = card.owner._id === currentUser._id;
     Api.deletePost(card._id)
-    .then(setCards(state => state.filter(c => c._id !== card._id)))
-    .catch(err => console.log(err));
+      .then(setCards((state) => state.filter((c) => c._id !== card._id)))
+      .catch((err) => console.log(err));
+  }
+
+  function handleUpdateUser({ name, about }) {
+    Api.updateUserInfo({ name, about })
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-      <Header />
-      <Main
-        onEditProfileClick={onEditProfile}
-        onAddPlaceClick={onAddPlace}
-        onEditAvatarClick={onEditAvatar}
-        onCardClick={handleCardClick}
-        onCardLike={handleCardLike}
-        onCardDelete={handleCardDelete}
-        cards={cards}
-      />
-      <Footer />
-      <EditProfilePopup
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-      />
-      <AddPostPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
-      <UpdateAvatarPopup
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        <Header />
+        <Main
+          onEditProfileClick={onEditProfile}
+          onAddPlaceClick={onAddPlace}
+          onEditAvatarClick={onEditAvatar}
+          onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
+          cards={cards}
+        />
+        <Footer />
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
+        />
+        <AddPostPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <UpdateAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+        />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
     </div>
   );

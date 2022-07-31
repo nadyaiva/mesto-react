@@ -26,17 +26,14 @@ class ApiClass {
       },
     }).then(this._handleResponse);
   }
-  updateUserInfo(nameInputValue, titleInputValue) {
+  updateUserInfo(inputProfileObj) {
     return fetch(`${this._baseurl}${this._cohort}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: nameInputValue,
-        about: titleInputValue,
-      }),
+      body: JSON.stringify(inputProfileObj),
     }).then(this._handleResponse);
   }
   addNewCard(cardInputData) {
