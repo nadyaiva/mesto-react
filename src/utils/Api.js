@@ -67,16 +67,14 @@ class ApiClass {
       },
     }).then(this._handleResponse);
   }
-  updateAvatar(urlImage) {
+  updateAvatar(avatarObj) {
     return fetch(`${this._baseurl}${this._cohort}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        avatar: urlImage,
-      }),
+      body: JSON.stringify(avatarObj),
     }).then(this._handleResponse);
   }
 }

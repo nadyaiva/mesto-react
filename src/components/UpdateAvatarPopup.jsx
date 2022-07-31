@@ -1,7 +1,17 @@
-import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import { useRef } from "react";
 
 function UpdateAvatarPopup(props) {
+  const avatarRef = useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  
+    props.onUpdateAvatar({
+      avatar: avatarRef.current.value,
+    });
+  } 
+
   return (
     <PopupWithForm
       title="Обновить аватар"
@@ -9,6 +19,7 @@ function UpdateAvatarPopup(props) {
       isOpen={props.isOpen}
       button="Сохранить"
       onClose={props.onClose}
+      onSubmit={handleSubmit}
     >
       <label className="popup__label">
         <input
@@ -19,6 +30,7 @@ function UpdateAvatarPopup(props) {
           name="link"
           id="link-avatar"
           required
+          ref={avatarRef}
         />
         <span className="popup__input-error link-input-error">
           Введите адрес сайта.

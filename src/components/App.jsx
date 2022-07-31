@@ -75,6 +75,15 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleUpdateAvatar({avatar}) {
+    Api.updateAvatar({avatar})
+    .then((res => {
+      setCurrentUser(res);
+      closeAllPopups();
+    }))
+    .catch((err) => console.log(err));
+  }
+
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -98,6 +107,7 @@ function App() {
         <UpdateAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
         />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
