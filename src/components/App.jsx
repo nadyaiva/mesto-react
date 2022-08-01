@@ -75,13 +75,22 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleUpdateAvatar({avatar}) {
-    Api.updateAvatar({avatar})
-    .then((res => {
-      setCurrentUser(res);
-      closeAllPopups();
-    }))
-    .catch((err) => console.log(err));
+  function handleUpdateAvatar({ avatar }) {
+    Api.updateAvatar({ avatar })
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleAddPlaceSubmit({name, link}) {
+    Api.addNewCard({name, link})
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -103,7 +112,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-        <AddPostPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <AddPostPopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+        />
         <UpdateAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
