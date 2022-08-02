@@ -20,7 +20,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const isOwn = card.owner._id === currentUser._id;
 
   // Создаём переменную, которую после зададим в `className` для кнопки удаления
-  const cardDeleteButtonClassName = `card__delete-button ${
+  const cardDeleteButtonClassName = `elements__button_trash ${
     isOwn ? "elements__button_trash" : "elements__button_trash_hidden"
   }`;
 

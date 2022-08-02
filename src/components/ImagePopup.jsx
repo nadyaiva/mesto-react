@@ -4,8 +4,8 @@ function ImagePopup({ card, onClose }) {
   const classNamePopupImage = `popup popup-fullscreen ${
     !!card ? "popup_opened" : ""
   }`;
-  const cardLink = !!card ? card.link : "";
-  const cardName = !!card ? card.name : "";
+  const cardLink = card ? card.link : "";
+  const cardName = card ? card.name : "";
 
   return (
     <div className={classNamePopupImage}>
